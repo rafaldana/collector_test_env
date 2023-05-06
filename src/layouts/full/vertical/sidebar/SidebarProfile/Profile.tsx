@@ -1,38 +1,45 @@
-import React from 'react';
-import { Box, Avatar, Typography, IconButton, Tooltip, useMediaQuery } from '@mui/material';
-import { useSelector } from '../../../../../store/Store';
-import { IconPower } from '@tabler/icons-react';
-import { AppState } from '../../../../../store/Store';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 
+import { Avatar, Box, IconButton, Tooltip, Typography, useMediaQuery } from '@mui/material';
+import { AppState, useSelector } from '@store/Store';
+import { IconPower } from '@tabler/icons-react';
+
 export const Profile = () => {
+  const { data: session } = useSession();
+  console.log(session);
   const customizer = useSelector((state: AppState) => state.customizer);
-  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
-  const hideMenu = lgUp ? customizer.isCollapse && !customizer.isSidebarHover : '';
+  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up("lg"));
+  const hideMenu = lgUp
+    ? customizer.isCollapse && !customizer.isSidebarHover
+    : "";
+
+  const handleSignOut = () => {
+    signOut();
+  };
 
   return (
     <Box
-      display={'flex'}
+      display={"flex"}
       alignItems="center"
       gap={2}
-      sx={{ m: 3, p: 2, bgcolor: `${'secondary.light'}` }}
+      sx={{ m: 3, p: 2, bgcolor: `${"secondary.light"}` }}
     >
-      {!hideMenu ? (
+      {!hideMenu && session ? (
         <>
-          <Avatar alt="Remy Sharp" src={"/images/profile/user-1.jpg"} />
+          <Avatar alt="Remy Sharp" src={session.user.image} />
 
           <Box>
-            <Typography variant="h6">Mathew</Typography>
-            <Typography variant="caption">Designer</Typography>
+            <Typography variant="h6">{session.user.name}</Typography>
+            <Typography variant="caption">User</Typography>
           </Box>
-          <Box sx={{ ml: 'auto' }}>
+          <Box sx={{ ml: "auto" }}>
             <Tooltip title="Logout" placement="top">
               <IconButton
                 color="primary"
-                component={Link}
-                href="auth/auth1/login"
                 aria-label="logout"
                 size="small"
+                onClick={handleSignOut}
               >
                 <IconPower size="20" />
               </IconButton>
@@ -40,7 +47,7 @@ export const Profile = () => {
           </Box>
         </>
       ) : (
-        ''
+        ""
       )}
     </Box>
   );

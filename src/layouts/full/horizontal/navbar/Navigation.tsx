@@ -1,25 +1,25 @@
-import { useMediaQuery, Box, Drawer, Container, Theme } from '@mui/material';
-import NavListing from './NavListing/NavListing';
-import Logo from '../../shared/logo/Logo';
-import { useSelector, useDispatch } from '../../../../store/Store';
+import { Box, Container, Drawer, Theme, useMediaQuery } from '@mui/material';
+
 import { toggleMobileSidebar } from '../../../../store/customizer/CustomizerSlice';
+import { AppState, useDispatch, useSelector } from '../../../../store/Store';
+import Logo from '../../shared/logo/Logo';
 import SidebarItems from '../../vertical/sidebar/SidebarItems';
-import { AppState } from '../../../../store/Store';
+import NavListing from './NavListing/NavListing';
 
 const Navigation = () => {
-  const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
+  const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
   const customizer = useSelector((state: AppState) => state.customizer);
   const dispatch = useDispatch();
 
   if (lgUp) {
     return (
-      <Box sx={{ borderBottom: '1px solid rgba(0,0,0,0.05)' }} py={2}>
+      <Box sx={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }} py={2}>
         {/* ------------------------------------------- */}
         {/* Sidebar for desktop */}
         {/* ------------------------------------------- */}
         <Container
           sx={{
-            maxWidth: customizer.isLayout === 'boxed' ? 'lg' : '100%!important',
+            maxWidth: customizer.isLayout === "boxed" ? "lg" : "100%!important",
           }}
         >
           <NavListing />
@@ -37,7 +37,7 @@ const Navigation = () => {
       PaperProps={{
         sx: {
           width: customizer.SidebarWidth,
-          border: '0 !important',
+          border: "0 !important",
           boxShadow: (theme) => theme.shadows[8],
         },
       }}

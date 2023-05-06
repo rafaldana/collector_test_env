@@ -1,10 +1,11 @@
-import Menudata from "../Menudata";
-import { useRouter } from "next/router";
-import { Box, List, Theme, useMediaQuery } from "@mui/material";
-import { useSelector } from "../../../../../store/Store";
-import NavItem from "../NavItem/NavItem";
-import NavCollapse from "../NavCollapse/NavCollapse";
-import { AppState } from "../../../../../store/Store";
+import { useRouter } from 'next/router';
+
+import { Box, List, Theme, useMediaQuery } from '@mui/material';
+import { AppState, useSelector } from '@store/Store';
+
+import Menudata from '../Menudata';
+import NavCollapse from '../NavCollapse/NavCollapse';
+import NavItem from '../NavItem/NavItem';
 
 const NavListing = () => {
   const { pathname } = useRouter();

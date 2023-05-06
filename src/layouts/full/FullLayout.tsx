@@ -1,11 +1,11 @@
-import { styled, Container, Box, useTheme } from "@mui/material";
-import { useSelector } from "../../store/Store";
-import { AppState } from "../../store/Store";
-import Header from "./vertical/header/Header";
-import Sidebar from "./vertical/sidebar/Sidebar";
-import Customizer from "./shared/customizer/Customizer";
-import Navigation from "../full/horizontal/navbar/Navigation";
-import HorizontalHeader from "../full/horizontal/header/Header";
+import { Box, Container, styled, useTheme } from '@mui/material';
+
+import { AppState, useSelector } from '../../store/Store';
+import HorizontalHeader from '../full/horizontal/header/Header';
+import Navigation from '../full/horizontal/navbar/Navigation';
+import Customizer from './shared/customizer/Customizer';
+import Header from './vertical/header/Header';
+import Sidebar from './vertical/sidebar/Sidebar';
 
 const MainWrapper = styled("div")(() => ({
   display: "flex",

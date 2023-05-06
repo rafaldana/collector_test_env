@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { Box, Menu, Typography, Button, Divider, Grid } from '@mui/material';
 import Link from 'next/link';
+import { useState } from 'react';
+
+import { Box, Button, Divider, Grid, Menu, Typography } from '@mui/material';
 import { IconChevronDown, IconHelp } from '@tabler/icons-react';
+
 import AppLinks from './AppLinks';
 import QuickLinks from './QuickLinks';
 
@@ -26,11 +28,18 @@ const AppDD = () => {
           aria-controls="msgs-menu"
           aria-haspopup="true"
           sx={{
-            bgcolor: anchorEl2 ? 'primary.light' : '',
-            color: anchorEl2 ? 'primary.main' : (theme) => theme.palette.text.secondary,
+            bgcolor: anchorEl2 ? "primary.light" : "",
+            color: anchorEl2
+              ? "primary.main"
+              : (theme) => theme.palette.text.secondary,
           }}
           onClick={handleClick2}
-          endIcon={<IconChevronDown size="15" style={{ marginLeft: '-5px', marginTop: '2px' }} />}
+          endIcon={
+            <IconChevronDown
+              size="15"
+              style={{ marginLeft: "-5px", marginTop: "2px" }}
+            />
+          }
         >
           Apps
         </Button>
@@ -43,13 +52,13 @@ const AppDD = () => {
           keepMounted
           open={Boolean(anchorEl2)}
           onClose={handleClose2}
-          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-          transformOrigin={{ horizontal: 'left', vertical: 'top' }}
+          anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+          transformOrigin={{ horizontal: "left", vertical: "top" }}
           sx={{
-            '& .MuiMenu-paper': {
-              width: '850px',
+            "& .MuiMenu-paper": {
+              width: "850px",
             },
-            '& .MuiMenu-paper ul': {
+            "& .MuiMenu-paper ul": {
               p: 0,
             },
           }}
@@ -62,8 +71,8 @@ const AppDD = () => {
                 <Box
                   sx={{
                     display: {
-                      xs: 'none',
-                      sm: 'flex',
+                      xs: "none",
+                      sm: "flex",
                     },
                   }}
                   alignItems="center"
@@ -99,13 +108,31 @@ const AppDD = () => {
           </Grid>
         </Menu>
       </Box>
-      <Button color="inherit" sx={{color: (theme) => theme.palette.text.secondary}} variant="text" href="/apps/chat" component={Link}>
+      <Button
+        color="inherit"
+        sx={{ color: (theme) => theme.palette.text.secondary }}
+        variant="text"
+        href="/apps/chat"
+        component={Link}
+      >
         Chat
       </Button>
-      <Button color="inherit" sx={{color: (theme) => theme.palette.text.secondary}} variant="text" href="/apps/calendar" component={Link}>
+      <Button
+        color="inherit"
+        sx={{ color: (theme) => theme.palette.text.secondary }}
+        variant="text"
+        href="/apps/calendar"
+        component={Link}
+      >
         Calendar
       </Button>
-      <Button color="inherit" sx={{color: (theme) => theme.palette.text.secondary}} variant="text" href="/apps/email" component={Link}>
+      <Button
+        color="inherit"
+        sx={{ color: (theme) => theme.palette.text.secondary }}
+        variant="text"
+        href="/apps/email"
+        component={Link}
+      >
         Email
       </Button>
     </>

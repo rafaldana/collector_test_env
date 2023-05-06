@@ -1,9 +1,10 @@
-import Link from "next/link";
-import { Grid, Box, Typography, Stack } from "@mui/material";
-import PageContainer from "../../../../src/components/container/PageContainer";
-import Logo from "../../../../src/layouts/full/shared/logo/Logo";
+import Link from 'next/link';
 
-import AuthRegister from "../../authForms/AuthRegister";
+import PageContainer from '@components/container/PageContainer';
+import Logo from '@layouts/full/shared/logo/Logo';
+import { Box, Grid, Stack, Typography } from '@mui/material';
+
+import AuthRegister from '../../authForms/AuthRegister';
 
 const Register = () => (
   <PageContainer>
@@ -71,7 +72,7 @@ const Register = () => (
       >
         <Box p={4}>
           <AuthRegister
-            title="Welcome to Modernize"
+            title="Welcome to Collector"
             subtext={
               <Typography variant="subtitle1" color="textSecondary" mb={1}>
                 Your Admin Dashboard

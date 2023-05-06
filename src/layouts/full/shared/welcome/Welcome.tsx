@@ -1,5 +1,6 @@
-import * as React from "react";
-import { Snackbar, Alert, AlertTitle } from "@mui/material";
+import * as React from 'react';
+
+import { Alert, AlertTitle, Snackbar } from '@mui/material';
 
 const Welcome = () => {
   const [open, setOpen] = React.useState(false);
@@ -37,8 +38,7 @@ const Welcome = () => {
           variant="filled"
           sx={{ width: "100%", color: "white" }}
         >
-          <AlertTitle>Welcome To Modernize</AlertTitle>
-          Easy to customize the Template!!!
+          <AlertTitle>Welcome to collector App</AlertTitle>
         </Alert>
       </Snackbar>
     </React.Fragment>
