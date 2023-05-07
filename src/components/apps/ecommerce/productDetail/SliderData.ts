@@ -1,5 +1,3 @@
-
-
 interface DataType {
   id: number;
   imgPath: string;
@@ -7,32 +5,8 @@ interface DataType {
 
 const SliderData: DataType[] = [
   {
-    imgPath: "/images/products/s1.jpg",
+    imgPath: "/images/paints/0001.jpg",
     id: 1,
-  },
-  {
-    imgPath: "/images/products/s2.jpg",
-    id: 2,
-  },
-  {
-    imgPath: "/images/products/s3.jpg",
-    id: 3,
-  },
-  {
-    imgPath: "/images/products/s4.jpg",
-    id: 4,
-  },
-  {
-    imgPath: "/images/products/s5.jpg",
-    id: 5,
-  },
-  {
-    imgPath: "/images/products/s6.jpg",
-    id: 6,
-  },
-  {
-    imgPath: "/images/products/s7.jpg",
-    id: 7,
   },
 ];
 

@@ -1,8 +1,7 @@
+import GalleryCard from '@components/apps/userprofile/gallery/GalleryCard';
+import ProfileBanner from '@components/apps/userprofile/profile/ProfileBanner';
+import PageContainer from '@components/container/PageContainer';
 import { Grid } from '@mui/material';
-import PageContainer from '../../../../src/components/container/PageContainer';
-import ProfileBanner from '../../../../src/components/apps/userprofile/profile/ProfileBanner';
-import GalleryCard from '../../../../src/components/apps/userprofile/gallery/GalleryCard';
-
 
 const Gallery = () => {
   return (

@@ -25,26 +25,15 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: "Profile",
+    title: "Start",
     icon: IconUserCircle,
     href: "/user-profile/profile",
   },
   {
-    navlabel: true,
-    subheader: "Auctions",
-  },
-  {
     id: uniqueId(),
-    title: "Auction - 1",
-    icon: IconShoppingCart,
-    href: "/auctions/detail/1",
-  },
-  {
-    id: uniqueId(),
-    title: "Disabled",
-    icon: IconBan,
-    href: "",
-    disabled: true,
+    title: "My Collection",
+    icon: IconUserCircle,
+    href: "/user-profile/gallery",
   },
 ];
 

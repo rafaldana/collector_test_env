@@ -1,7 +1,9 @@
-import axios from "../../../utils/axios";
-import { filter, map } from "lodash";
-import { createSlice } from "@reduxjs/toolkit";
-import { AppDispatch } from "../../Store";
+import { filter, map } from 'lodash';
+
+import { createSlice } from '@reduxjs/toolkit';
+
+import axios from '../../../utils/axios';
+import { AppDispatch } from '../../Store';
 
 const API_URL = "/api/data/eCommerce/ProductsData";
 

@@ -1,5 +1,4 @@
 import { signOut, useSession } from 'next-auth/react';
-import Link from 'next/link';
 
 import { Avatar, Box, IconButton, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { AppState, useSelector } from '@store/Store';

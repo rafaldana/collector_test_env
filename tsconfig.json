@@ -22,7 +22,8 @@
       "@layouts/*": ["./src/layouts/*"],
       "@models/*": ["./models/*"],
       "@libs/*": ["./libs/*"],
-      "@store/*": ["./src/store/*"]
+      "@store/*": ["./src/store/*"],
+      "@utils/*": ["/src/utils/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
