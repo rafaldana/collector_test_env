@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import BlankCard from '@components/shared/BlankCard';
+import Counter from '@components/shared/Counter/Counter';
 // MUI Elements
 import {
     Box, Button, CardContent, Chip, Divider, Fab, Grid, Rating, Stack, Typography, useTheme
@@ -42,32 +43,37 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
           <Box display="flex" alignItems="center">
             <Box mb={5}>
               <Chip label="Auction" color="success" size="small" />
-
-              <Typography
-                color="textSecondary"
-                variant="caption"
-                ml={1}
-                textTransform="capitalize"
-              >
-                {product?.category}
-              </Typography>
+              <Stack direction="row" alignItems={"center"} mt={2}>
+                <Typography
+                  color="textSecondary"
+                  variant="caption"
+                  ml={1}
+                  textTransform="capitalize"
+                >
+                  {product?.category}
+                </Typography>
+              </Stack>
             </Box>
           </Box>
           {/* ------------------------------------------- */}
           {/* Title and description */}
           {/* ------------------------------------------- */}
           <Box mb={5}>
-            <Typography fontWeight="600" variant="h4" mt={1}>
-              {product?.title}
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              mt={1}
-              color={theme.palette.text.secondary}
-            >
-              {product.autor}
-            </Typography>
-
+            <Stack direction="row" alignItems={"center"} mt={2}>
+              <Box>
+                <Typography fontWeight="600" variant="h4" mt={1}>
+                  {product?.title}
+                </Typography>
+                <Typography
+                  variant="subtitle2"
+                  mt={1}
+                  color={theme.palette.text.secondary}
+                >
+                  {product.autor}
+                </Typography>
+              </Box>
+              <Counter duration={10} handlerOnComplete={() => {}} />
+            </Stack>
             <Typography mt={2} variant="h4" fontWeight={600}>
               Start Price: 2000
             </Typography>

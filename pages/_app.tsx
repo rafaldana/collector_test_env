@@ -9,6 +9,7 @@ import '@components/landingpage/demo-slider/demo-slider.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '@components/apps/userprofile/ProfileWizard/video.css';
+import '@components/shared/Counter/style.css';
 
 import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
