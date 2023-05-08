@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 //Carousel slider for product
 import Slider from 'react-slick';
 
@@ -9,23 +9,20 @@ import { fetchProducts } from '@store/apps/eCommerce/ECommerceSlice';
 import { useDispatch, useSelector } from '@store/Store';
 
 import { ProductType } from '../../../../types/apps/eCommerce';
-//Carousel slider data
-import SliderData from './SliderData';
 
-const ProductCarousel = () => {
+type ProductCarouselProps = {
+  productId?: number;
+};
+
+const ProductCarousel: FC<ProductCarouselProps> = ({ productId }) => {
   const slider1 = useRef();
   const dispatch = useDispatch();
   const router = useRouter();
   const getTitle: string | any = router.query.id;
 
-  // Get Product
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
   // Get Products
   const product: ProductType = useSelector(
-    (state) => state.ecommerceReducer.products[getTitle - 1]
+    (state) => state.galleryReducer.gallery[productId - 1]
   );
   const getProductImage = product ? product.photo : "";
 
@@ -44,24 +41,14 @@ const ProductCarousel = () => {
   return (
     <Box>
       <Slider ref={(slider: any) => (slider1.current = slider)}>
-        <Box>
+        <Box key={productId}>
           <img
-            src={getProductImage}
-            alt={getProductImage}
+            src={`/images/paints/${product.photo}`}
+            alt={`pictures-${productId}`}
             width="100%"
             style={{ borderRadius: "5px" }}
           />
         </Box>
-        {SliderData.map((step) => (
-          <Box key={step.id}>
-            <img
-              src={step.imgPath}
-              alt={step.imgPath}
-              width="100%"
-              style={{ borderRadius: "5px" }}
-            />
-          </Box>
-        ))}
       </Slider>
     </Box>
   );

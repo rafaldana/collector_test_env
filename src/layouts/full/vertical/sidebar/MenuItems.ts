@@ -1,8 +1,6 @@
 import { uniqueId } from 'lodash';
 
-import {
-    IconBan, IconShoppingCart, IconUserCircle, IconUserPlus, IconZoomCode
-} from '@tabler/icons-react';
+import { IconPictureInPicture, IconUserCircle } from '@tabler/icons-react';
 
 interface MenuitemsType {
   [x: string]: any;
@@ -27,13 +25,13 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: "Start",
     icon: IconUserCircle,
-    href: "/user-profile/profile",
+    href: "/",
   },
   {
     id: uniqueId(),
     title: "My Collection",
-    icon: IconUserCircle,
-    href: "/user-profile/gallery",
+    icon: IconPictureInPicture,
+    href: "/collection",
   },
 ];
 

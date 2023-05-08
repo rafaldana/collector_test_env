@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const API_URL = "";
-
 interface StateType {
   amount: number;
 }

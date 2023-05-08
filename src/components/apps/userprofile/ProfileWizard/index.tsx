@@ -1,17 +1,18 @@
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import PageContainer from '@components/container/PageContainer';
 import ParentCard from '@components/shared/ParentCard';
-import {
-    Alert, Box, Button, FormControlLabel, Step, StepLabel, Stepper, Typography
-} from '@mui/material';
+import { Alert, Box, Button, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
+import Vimeo from '@u-wave/react-vimeo';
 
-const steps = ["Intro", "Information", "Finish"];
+const steps = ["Start", "Video1", "Video2", "video3"];
 
 const ProfileWizard = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  const { push } = useRouter();
 
   const isStepOptional = (step: any) => step === 1;
 
@@ -52,14 +53,38 @@ const ProfileWizard = () => {
   const handleSteps = (step: any) => {
     switch (step) {
       case 0:
-        return <Box>VIDEO</Box>;
+        return (
+          <Box mt={12} mb={12}>
+            <Typography variant="h2" align="center">
+              Cool Welcome text
+            </Typography>
+          </Box>
+        );
       case 1:
-        return <Box>TEXT</Box>;
+        return (
+          <Box mt={5}>
+            <Vimeo className="video" video="824515524" />
+          </Box>
+        );
       case 2:
-        return <Box pt={3}>VIDEO</Box>;
+        return (
+          <Box mt={5}>
+            <Vimeo className="video" video="824516071" />
+          </Box>
+        );
+      case 3:
+        return (
+          <Box mt={5}>
+            <Vimeo className="video" video="824573151" />
+          </Box>
+        );
       default:
         break;
     }
+  };
+
+  const handleMoveToAuction = () => {
+    push("/auctions/list");
   };
 
   const handleReset = () => {
@@ -76,14 +101,6 @@ const ProfileWizard = () => {
               const labelProps: {
                 optional?: React.ReactNode;
               } = {};
-              if (isStepOptional(index)) {
-                labelProps.optional = (
-                  <Typography variant="caption">Optional</Typography>
-                );
-              }
-              if (isStepSkipped(index)) {
-                stepProps.completed = false;
-              }
 
               return (
                 <Step key={label} {...stepProps}>
@@ -94,18 +111,20 @@ const ProfileWizard = () => {
           </Stepper>
           {activeStep === steps.length ? (
             <>
-              <Stack spacing={2} mt={3}>
+              <Stack spacing={14} mt={12} mb={5}>
                 <Alert severity="success">
-                  All steps completed - you&apos;re finished
+                  <Typography variant="h5" align="center">
+                    All steps completed - you&apos;re finished
+                  </Typography>
                 </Alert>
 
                 <Box textAlign="right">
                   <Button
-                    onClick={handleReset}
+                    onClick={handleMoveToAuction}
                     variant="contained"
                     color="error"
                   >
-                    Reset
+                    Go to next Step
                   </Button>
                 </Box>
               </Stack>
@@ -125,12 +144,6 @@ const ProfileWizard = () => {
                   Back
                 </Button>
                 <Box flex="1 1 auto" />
-                {isStepOptional(activeStep) && (
-                  <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                    Skip
-                  </Button>
-                )}
-
                 <Button
                   onClick={handleNext}
                   variant="contained"

@@ -13,14 +13,22 @@ const ProfileTab = () => {
   };
   const ProfileTabs = [
     {
-      label: "Profile",
-      icon: <IconUserCircle size="20" />,
-      to: "/user-profile/profile",
+      label: "",
+      icon: "",
+      to: "/auctions/list",
+      hide: true,
     },
     {
-      label: "Your Collection",
+      label: "Profile",
+      icon: <IconUserCircle size="20" />,
+      to: "/",
+      hide: false,
+    },
+    {
+      label: "My collection",
       icon: <IconPhoto size="20" />,
-      to: "/user-profile/gallery",
+      to: "/collection",
+      hide: false,
     },
   ];
 
@@ -40,7 +48,10 @@ const ProfileTab = () => {
               <Tab
                 iconPosition="start"
                 label={tab.label}
-                sx={{ minHeight: "50px" }}
+                sx={{
+                  minHeight: "50px",
+                  display: tab.hide ? "none" : "inline-flex",
+                }}
                 icon={tab.icon}
                 component={Link}
                 href={tab.to}

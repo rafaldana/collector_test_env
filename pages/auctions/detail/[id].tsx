@@ -1,7 +1,6 @@
 import ProductDetail from '@components/apps/ecommerce/productDetail';
 import ProductCarousel from '@components/apps/ecommerce/productDetail/ProductCarousel';
 import ProductDesc from '@components/apps/ecommerce/productDetail/ProductDesc';
-import ProductRelated from '@components/apps/ecommerce/productDetail/ProductRelated';
 import PageContainer from '@components/container/PageContainer';
 import ChildCard from '@components/shared/ChildCard';
 import Breadcrumb from '@layouts/full/shared/breadcrumb/Breadcrumb';

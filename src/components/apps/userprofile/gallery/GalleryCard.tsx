@@ -1,41 +1,35 @@
+import { format } from 'date-fns';
+import React, { use, useEffect, useState } from 'react';
+
+import BlankCard from '@components/shared/BlankCard';
+import ResponsiveDialog from '@components/ui-components/dialog/ResponsiveDialog';
 import {
-  Box,
-  Stack,
-  Grid,
-  Typography,
-  Chip,
-  TextField,
-  InputAdornment,
-  IconButton,
-  CardMedia,
-  Skeleton,
-} from "@mui/material";
-import React, { useEffect } from "react";
-import BlankCard from "../../../../components/shared/BlankCard";
-import { useSelector, useDispatch } from "../../../../store/Store";
-import { fetchPhotos } from "../../../../store/apps/userProfile/UserProfileSlice";
-import { IconDotsVertical, IconSearch } from "@tabler/icons-react";
-import { format } from "date-fns";
-import { GallaryType } from "../../../../types/apps/users";
+    Box, CardMedia, Chip, Grid, IconButton, InputAdornment, Skeleton, Stack, TextField, Typography
+} from '@mui/material';
+import { fetchGallery } from '@store/gallery/GallerySlice';
+import { useDispatch, useSelector } from '@store/Store';
+import { IconCircleArrowRight } from '@tabler/icons-react';
 
 const GalleryCard = () => {
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState(null);
+  const openDetailsModal = (index: number) => {
+    setCurrentProduct(gallery[index - 1]);
+    setIsModalOpen(true);
+  };
+
+  const closeDetailsModal = (event) => {
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
-    dispatch(fetchPhotos());
+    dispatch(fetchGallery());
   }, [dispatch]);
 
-  const filterPhotos = (photos: GallaryType[], cSearch: string) => {
-    if (photos)
-      return photos.filter((t) =>
-        t.name.toLocaleLowerCase().includes(cSearch.toLocaleLowerCase())
-      );
+  const gallery = useSelector((state) => state.galleryReducer.gallery);
 
-    return photos;
-  };
-  const [search, setSearch] = React.useState("");
-  const getPhotos = useSelector((state) =>
-    filterPhotos(state.userpostsReducer.gallery, search)
-  );
+  console.log("gallery", gallery);
 
   // skeleton
   const [isLoading, setLoading] = React.useState(true);
@@ -43,7 +37,7 @@ const GalleryCard = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -55,34 +49,16 @@ const GalleryCard = () => {
           <Stack direction="row" alignItems={"center"} mt={2}>
             <Box>
               <Typography variant="h3">
-                Gallery &nbsp;
-                <Chip label={getPhotos.length} color="secondary" size="small" />
+                Pre-auction exhibition &nbsp;
+                <Chip label={gallery.length} color="secondary" size="small" />
               </Typography>
-            </Box>
-            <Box ml="auto">
-              <TextField
-                id="outlined-search"
-                placeholder="Search Gallery"
-                size="small"
-                type="search"
-                variant="outlined"
-                inputProps={{ "aria-label": "Search Gallery" }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconSearch size="14" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth
-                onChange={(e) => setSearch(e.target.value)}
-              />
             </Box>
           </Stack>
         </Grid>
-        {getPhotos.map((photo) => {
+
+        {gallery.map((item, index) => {
           return (
-            <Grid item xs={12} lg={4} key={photo.id}>
+            <Grid item xs={12} lg={4} key={item.id}>
               <BlankCard className="hoverCard">
                 {isLoading ? (
                   <>
@@ -90,28 +66,37 @@ const GalleryCard = () => {
                       variant="rectangular"
                       animation="wave"
                       width="100%"
-                      height={220}
+                      height={500}
                     ></Skeleton>
                   </>
                 ) : (
                   <CardMedia
                     component={"img"}
-                    height="220"
-                    alt="Remy Sharp"
-                    src={photo.cover}
+                    height="500"
+                    alt={item.title}
+                    src={`/images/paints/${item.photo}`}
+                    sx={{ cursor: "pointer" }}
+                    onClick={() => openDetailsModal(item.id)}
                   />
                 )}
                 <Box p={3}>
-                  <Stack direction="row" gap={1}>
+                  <Stack
+                    direction="row"
+                    gap={1}
+                    sx={{
+                      "&:hover": { cursor: "pointer" },
+                      minHeight: "100px;",
+                    }}
+                    alignItems={"center"}
+                    onClick={() => openDetailsModal(item.id)}
+                  >
                     <Box>
-                      <Typography variant="h6">{photo.name}jpg</Typography>
-                      <Typography variant="caption">
-                        {format(new Date(photo.time), "E, MMM d, yyyy")}
-                      </Typography>
+                      <Typography variant="h6">{item.title}</Typography>
+                      <Typography variant="caption">{item.autor}</Typography>
                     </Box>
                     <Box ml={"auto"}>
                       <IconButton>
-                        <IconDotsVertical size="16" />
+                        <IconCircleArrowRight size="24" />
                       </IconButton>
                     </Box>
                   </Stack>
@@ -121,6 +106,12 @@ const GalleryCard = () => {
           );
         })}
       </Grid>
+      {isModalOpen && (
+        <ResponsiveDialog
+          product={currentProduct}
+          handlerClose={closeDetailsModal}
+        />
+      )}
     </>
   );
 };

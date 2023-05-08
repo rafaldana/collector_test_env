@@ -14,6 +14,7 @@ import NotesReducer from './apps/notes/NotesSlice';
 import TicketReducer from './apps/tickets/TicketSlice';
 import UserProfileReducer from './apps/userProfile/UserProfileSlice';
 import CustomizerReducer from './customizer/CustomizerSlice';
+import GalleryReducer from './gallery/GallerySlice';
 import UserReducer from './user/UserSlice';
 
 export const store = configureStore({
@@ -28,6 +29,7 @@ export const store = configureStore({
     userpostsReducer: UserProfileReducer,
     blogReducer: BlogReducer,
     userReducer: UserReducer,
+    galleryReducer: GalleryReducer,
   },
 });
 
@@ -42,6 +44,7 @@ const rootReducer = combineReducers({
   userpostsReducer: UserProfileReducer,
   blogReducer: BlogReducer,
   userReducer: UserReducer,
+  galleryReducer: GalleryReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
