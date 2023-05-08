@@ -63,7 +63,7 @@ const AuthSocialButtons = ({ title }: signInType) => {
           >
             {title}{" "}
           </Box>{" "}
-          FB
+          TW
         </CustomSocialButton>
       </Stack>
     </>

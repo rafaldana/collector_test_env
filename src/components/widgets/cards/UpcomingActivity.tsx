@@ -1,8 +1,12 @@
 import React from 'react';
+
+import { Avatar, Box, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Stack, Typography, Avatar, Box } from '@mui/material';
+import {
+    IconDatabase, IconMail, IconMapPin, IconPhone, IconScreenShare
+} from '@tabler/icons-react';
+
 import DashboardCard from '../../shared/DashboardCard';
-import { IconDatabase, IconMail, IconMapPin, IconPhone, IconScreenShare } from '@tabler/icons-react';
 
 const UpcomingActivity = () => {
   // chart color
@@ -20,40 +24,40 @@ const UpcomingActivity = () => {
 
   const stats = [
     {
-      title: 'Trip to singapore',
-      subtitle: 'working on',
+      title: "Trip to singapore",
+      subtitle: "working on",
       time: 5,
       color: primary,
       lightcolor: primarylight,
       icon: <IconMapPin width={20} />,
     },
     {
-      title: 'Archived Data',
-      subtitle: 'working on',
+      title: "Archived Data",
+      subtitle: "working on",
       time: 10,
       color: secondary,
       lightcolor: secondarylight,
       icon: <IconDatabase width={20} />,
     },
     {
-      title: 'Meeting with client',
-      subtitle: 'pending',
+      title: "Meeting with client",
+      subtitle: "pending",
       time: 15,
       color: warning,
       lightcolor: warninglight,
       icon: <IconPhone width={20} />,
     },
     {
-      title: 'Screening Task Team',
-      subtitle: 'working on',
+      title: "Screening Task Team",
+      subtitle: "working on",
       time: 20,
       color: error,
       lightcolor: errorlight,
       icon: <IconScreenShare width={20} />,
     },
     {
-      title: 'Send envelope to John',
-      subtitle: 'done',
+      title: "Send envelope to John",
+      subtitle: "done",
       time: 20,
       color: success,
       lightcolor: successlight,
@@ -62,7 +66,7 @@ const UpcomingActivity = () => {
   ];
 
   return (
-    <DashboardCard title="Upcoming Activity" subtitle='In New year'>
+    <DashboardCard title="Upcoming Activity" subtitle="In New year">
       <>
         <Stack spacing={3} mt={5}>
           {stats.map((stat, i) => (
@@ -76,7 +80,12 @@ const UpcomingActivity = () => {
               <Stack direction="row" alignItems="center" spacing={2}>
                 <Avatar
                   variant="rounded"
-                  sx={{ bgcolor: stat.lightcolor, color: stat.color, width: 40, height: 40 }}
+                  sx={{
+                    bgcolor: stat.lightcolor,
+                    color: stat.color,
+                    width: 40,
+                    height: 40,
+                  }}
                 >
                   {stat.icon}
                 </Avatar>

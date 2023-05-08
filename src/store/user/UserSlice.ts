@@ -5,7 +5,7 @@ interface StateType {
 }
 
 const initialState = {
-  amount: 0,
+  amount: 100000,
 };
 
 const UserSlice = createSlice({

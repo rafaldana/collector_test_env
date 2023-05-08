@@ -1,7 +1,7 @@
+import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, Typography, Stack, Box } from '@mui/material';
-import { useSelector } from '../../../src/store/Store';
-import { AppState } from '../../../src/store/Store';
+
+import { AppState, useSelector } from '../../../src/store/Store';
 
 type Props = {
   title?: string;
@@ -13,6 +13,7 @@ type Props = {
   headsubtitle?: string | JSX.Element;
   children?: JSX.Element;
   middlecontent?: string | JSX.Element;
+  isFullHeight?: boolean;
 };
 
 const DashboardCard = ({
@@ -25,6 +26,7 @@ const DashboardCard = ({
   headtitle,
   headsubtitle,
   middlecontent,
+  isFullHeight = false,
 }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
@@ -33,9 +35,13 @@ const DashboardCard = ({
 
   return (
     <Card
-      sx={{ padding: 0, border: !customizer.isCardShadow ?  `1px solid ${borderColor}` : 'none' }}
+      sx={{
+        padding: 0,
+        minHeight: isFullHeight ? "100%" : "unset",
+        border: !customizer.isCardShadow ? `1px solid ${borderColor}` : "none",
+      }}
       elevation={customizer.isCardShadow ? 9 : 0}
-      variant={!customizer.isCardShadow ? 'outlined' : undefined}
+      variant={!customizer.isCardShadow ? "outlined" : undefined}
     >
       {cardheading ? (
         <CardContent>
@@ -45,24 +51,24 @@ const DashboardCard = ({
           </Typography>
         </CardContent>
       ) : (
-        <CardContent sx={{p: "30px"}}>
+        <CardContent sx={{ p: "30px" }}>
           {title ? (
             <Stack
               direction="row"
               spacing={2}
               justifyContent="space-between"
-              alignItems={'center'}
+              alignItems={"center"}
               mb={3}
             >
               <Box>
-                {title ? <Typography variant="h5">{title}</Typography> : ''}
+                {title ? <Typography variant="h5">{title}</Typography> : ""}
 
                 {subtitle ? (
                   <Typography variant="subtitle2" color="textSecondary">
                     {subtitle}
                   </Typography>
                 ) : (
-                  ''
+                  ""
                 )}
               </Box>
               {action}

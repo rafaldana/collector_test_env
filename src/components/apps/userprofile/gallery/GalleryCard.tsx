@@ -1,10 +1,12 @@
 import { format } from 'date-fns';
-import React, { use, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 import BlankCard from '@components/shared/BlankCard';
 import ResponsiveDialog from '@components/ui-components/dialog/ResponsiveDialog';
 import {
-    Box, CardMedia, Chip, Grid, IconButton, InputAdornment, Skeleton, Stack, TextField, Typography
+    Box, Button, CardMedia, Chip, Grid, IconButton, InputAdornment, Skeleton, Stack, TextField,
+    Typography
 } from '@mui/material';
 import { fetchGallery } from '@store/gallery/GallerySlice';
 import { useDispatch, useSelector } from '@store/Store';
@@ -12,6 +14,7 @@ import { IconCircleArrowRight } from '@tabler/icons-react';
 
 const GalleryCard = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
   const openDetailsModal = (index: number) => {
@@ -23,14 +26,15 @@ const GalleryCard = () => {
     setIsModalOpen(false);
   };
 
+  const handleStart = () => {
+    router.push("/auctions/details/1");
+  };
+
   useEffect(() => {
     dispatch(fetchGallery());
   }, [dispatch]);
 
   const gallery = useSelector((state) => state.galleryReducer.gallery);
-
-  console.log("gallery", gallery);
-
   // skeleton
   const [isLoading, setLoading] = React.useState(true);
 
@@ -105,6 +109,22 @@ const GalleryCard = () => {
             </Grid>
           );
         })}
+      </Grid>
+      <Grid item sm={12} lg={12}>
+        <Stack direction="row" alignItems={"right"} mt={5} mb={5}>
+          <Grid item xs={12} alignItems={"right"}>
+            <Button
+              color="primary"
+              size="large"
+              fullWidth
+              variant="contained"
+              onClick={handleStart}
+              sx={{ p: 2, borderRadius: "50px" }}
+            >
+              Start adventure
+            </Button>
+          </Grid>
+        </Stack>
       </Grid>
       {isModalOpen && (
         <ResponsiveDialog
