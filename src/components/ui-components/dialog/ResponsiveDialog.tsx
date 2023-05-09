@@ -34,7 +34,7 @@ const ResponsiveDialog: FC<ResponsiveDialogProps> = ({
   const stats = [
     {
       title: "LOT",
-      value: product.id,
+      value: product.title,
       icon: <IconHome2 width={20} />,
     },
     {
