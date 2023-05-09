@@ -28,7 +28,7 @@
     "axios": "^1.2.5",
     "axios-mock-adapter": "^1.21.2",
     "bcryptjs": "^2.4.3",
-    "chance": "^1.1.9",
+    "chance": "^1.1.11",
     "date-fns": "^2.29.3",
     "emoji-picker-react": "4.4.7",
     "formik": "^2.2.9",
@@ -59,6 +59,7 @@
     "simplebar-react": "^3.2.0",
     "slick-carousel": "^1.8.1",
     "stylis-plugin-rtl": "^2.1.1",
+    "use-local-slice": "^1.2.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {

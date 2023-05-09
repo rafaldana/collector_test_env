@@ -13,12 +13,6 @@ const ProfileTab = () => {
   };
   const ProfileTabs = [
     {
-      label: "",
-      icon: "",
-      to: "/auctions/list",
-      hide: true,
-    },
-    {
       label: "Profile",
       icon: <IconUserCircle size="20" />,
       to: "/",

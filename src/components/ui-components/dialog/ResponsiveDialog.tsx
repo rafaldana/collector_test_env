@@ -10,12 +10,13 @@ import {
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {
-    IconBellDollar, IconCalendarTime, IconCurrencyDollar, IconRulerMeasure, IconUser
+    IconBellDollar, IconCalendarTime, IconCurrencyDollar, IconFrame, IconHome2, IconRulerMeasure,
+    IconUser
 } from '@tabler/icons-react';
 
 type ResponsiveDialogProps = {
-  product: IGallery;
-  handlerClose: Function;
+  product?: IGallery;
+  handlerClose?: Function;
 };
 
 const ResponsiveDialog: FC<ResponsiveDialogProps> = ({
@@ -57,9 +58,19 @@ const ResponsiveDialog: FC<ResponsiveDialogProps> = ({
       icon: <IconBellDollar width={20} />,
     },
     {
+      title: "Media",
+      value: product.priceStart,
+      icon: <IconFrame width={20} />,
+    },
+    {
       title: "Year",
-      value: product.year || undefined,
+      value: product.media,
       icon: <IconCalendarTime width={20} />,
+    },
+    {
+      title: "owner",
+      value: product.owner,
+      icon: <IconHome2 width={20} />,
     },
   ];
 

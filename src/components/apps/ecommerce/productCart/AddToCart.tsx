@@ -1,29 +1,16 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import emptyCart from 'public/images/products/empty-shopping-cart.svg';
+
 import {
-  Box,
-  Typography,
-  Avatar,
-  Stack,
-  ButtonGroup,
-  Button,
-  Table,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  IconButton,
-} from "@mui/material";
-import Link from "next/link";
-import { IconMinus, IconPlus, IconTrash } from "@tabler/icons-react";
-import { useSelector, useDispatch } from "../../../../store/Store";
-import emptyCart from "public/images/products/empty-shopping-cart.svg";
-import {
-  increment,
-  deleteCart,
-  decrement,
-} from "../../../../store/apps/eCommerce/ECommerceSlice";
-import { ProductType } from "../../../../types/apps/eCommerce";
-import Image from "next/image";
+    Avatar, Box, Button, ButtonGroup, IconButton, Stack, Table, TableBody, TableCell,
+    TableContainer, TableHead, TableRow, Typography
+} from '@mui/material';
+import { IconMinus, IconPlus, IconTrash } from '@tabler/icons-react';
+
+import { decrement, deleteCart, increment } from '../../../../store/apps/eCommerce/ECommerceSlice';
+import { useDispatch, useSelector } from '../../../../store/Store';
+import { ProductType } from '../../../../types/apps/eCommerce';
 
 const AddToCart = () => {
   const dispatch = useDispatch();

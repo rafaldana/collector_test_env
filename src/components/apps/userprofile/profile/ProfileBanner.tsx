@@ -83,7 +83,6 @@ const ProfileBanner = () => {
           {/* friends following buttons */}
         </Grid>
         {/**TabbingPart**/}
-        <ProfileTab />
       </BlankCard>
     </>
   );

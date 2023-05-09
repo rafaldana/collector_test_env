@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { Gallery } from '@models/gallery';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch } from '@store/Store';
 

@@ -1,3 +1,4 @@
+import config from '@config/index';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface StateType {
@@ -5,7 +6,7 @@ interface StateType {
 }
 
 const initialState = {
-  amount: 100000,
+  amount: config.startBalance,
 };
 
 const UserSlice = createSlice({

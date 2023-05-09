@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 type CounterProps = {
@@ -7,7 +7,7 @@ type CounterProps = {
   size: number;
 };
 
-const Counter: FC<CounterProps> = ({ duration, handlerOnComplete }) => {
+const Counter: FC<CounterProps> = ({ duration, handlerOnComplete, size }) => {
   const renderTime = ({ remainingTime }) => {
     const currentTime = useRef(remainingTime);
     const prevTime = useRef(null);
@@ -52,10 +52,11 @@ const Counter: FC<CounterProps> = ({ duration, handlerOnComplete }) => {
     <div className="timer-wrapper">
       <CountdownCircleTimer
         isPlaying
-        duration={10}
-        size={100}
+        duration={duration}
+        size={size}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
         colorsTime={[10, 6, 3, 0]}
+        onComplete={() => handlerOnComplete()}
       >
         {renderTime}
       </CountdownCircleTimer>
