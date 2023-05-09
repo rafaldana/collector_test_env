@@ -5,6 +5,7 @@ const config = {
   higherNextPriceBind: 10000,
   higherBindLimit: 100000,
   auctionTime: 60, //seconds
+  ends: 1683650700, // time stamp
 } as const;
 
 export default config;

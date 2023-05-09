@@ -1,4 +1,6 @@
 import { useFormik } from 'formik';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import * as yup from 'yup';
 
@@ -14,10 +16,10 @@ import { loginType } from '../../../src/types/auth/auth';
 import AuthSocialButtons from './AuthSocialButtons';
 
 const loginValidationSchema = yup.object({
-  username: yup
+  email: yup
     .string()
-    .min(2, "Der Benutzername sollte mindestens 2 Zeichen lang sein")
-    .required("Benutzername wird benötigt"),
+    .email("Geben Sie eine gültige E-Mail-Adresse ein")
+    .required("E-Mail ist erforderlich"),
   password: yup
     .string()
     .min(8, "Das Passwort sollte mindestens 8 Zeichen lang sein")
@@ -33,13 +35,23 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
     event.preventDefault();
   };
 
+  const router = useRouter();
+
   const onLoginFormSubmit = async (values) => {
-    console.log("env: ", process.env.NEXT_PUBLIC_CALLBACK_URL);
-    console.log(values);
+    const status = await signIn("credentials", {
+      redirect: false,
+      email: values.email,
+      password: values.password,
+      callbackUrl: "/",
+    });
+
+    if (status.ok) {
+      router.push(status.url);
+    }
   };
   const formik = useFormik({
     initialValues: {
-      username: "",
+      email: "",
       password: "",
     },
     validationSchema: loginValidationSchema,
@@ -54,9 +66,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
       ) : null}
 
       {subtext}
-
-      <AuthSocialButtons title="" />
-
+      <AuthSocialButtons title="Anmelden mit" />
       <form onSubmit={formik.handleSubmit}>
         <Box mt={3}>
           <Divider>
@@ -75,14 +85,14 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
 
         <Stack>
           <Box>
-            <CustomFormLabel htmlFor="username">Benutzername</CustomFormLabel>
+            <CustomFormLabel htmlFor="email">Benutzername</CustomFormLabel>
             <CustomTextField
-              id="username"
+              id="email"
               variant="outlined"
               fullWidth
-              {...formik.getFieldProps("username")}
-              error={formik.touched.username && Boolean(formik.errors.username)}
-              helperText={formik.touched.username && formik.errors.username}
+              {...formik.getFieldProps("email")}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
             />
           </Box>
           <Box>

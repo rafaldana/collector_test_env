@@ -1,9 +1,13 @@
+import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
+import Counter from '@components/shared/Counter/Counter';
+import config from '@config/index';
 import { Box, List, useMediaQuery } from '@mui/material';
 import { toggleMobileSidebar } from '@store/customizer/CustomizerSlice';
 import { AppState, useDispatch, useSelector } from '@store/Store';
 
+import { SidebarCounter } from './counterH';
 import Menuitems from './MenuItems';
 import NavCollapse from './NavCollapse';
 import NavGroup from './NavGroup/NavGroup';
@@ -19,6 +23,10 @@ const SidebarItems = () => {
     ? customizer.isCollapse && !customizer.isSidebarHover
     : "";
   const dispatch = useDispatch();
+
+  const handleEnds = () => {
+    signOut();
+  };
   return (
     <Box sx={{ px: 3 }}>
       <List sx={{ pt: 0 }} className="sidebarNav">
@@ -58,6 +66,9 @@ const SidebarItems = () => {
           }
         })}
       </List>
+      <Box mt={8}>
+        <SidebarCounter />
+      </Box>
     </Box>
   );
 };

@@ -7,7 +7,7 @@ import { Alert, Box, Button, Step, StepLabel, Stepper, Typography } from '@mui/m
 import { Stack } from '@mui/system';
 import Vimeo from '@u-wave/react-vimeo';
 
-const steps = ["Willkommen", "", "", ""];
+const steps = ["Willkommen", "video-1", "video-2", "video-3 "];
 
 const ProfileWizard = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -55,17 +55,33 @@ const ProfileWizard = () => {
       case 0:
         return (
           <Box mt={12} mb={12}>
-            <Typography variant="h4" fontWeight="700">
+            <Typography variant="h4" fontWeight="700" textAlign={"center"}>
               Willkommen bei NAWA QUEST!
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary" mt={2} mb={1}>
+            <Typography
+              variant="subtitle1"
+              color="textSecondary"
+              mt={2}
+              mb={1}
+              textAlign={"center"}
+            >
               Deine Aufgabe ist es, die großartigste Sammlung von Kunstwerken zu
               erstellen.
             </Typography>
-            <Typography variant="subtitle1" fontWeight="700" mb={1}>
+            <Typography
+              variant="subtitle1"
+              fontWeight="700"
+              mb={1}
+              textAlign={"center"}
+            >
               Zeit, mit dem Aufbau Ihrer Sammlung zu beginnen!
             </Typography>
-            <Typography variant="subtitle1" fontWeight="700" mb={1}>
+            <Typography
+              variant="subtitle1"
+              fontWeight="700"
+              mb={1}
+              textAlign={"center"}
+            >
               Zum Start anklicken!
             </Typography>
           </Box>
@@ -161,7 +177,7 @@ const ProfileWizard = () => {
                     activeStep === steps.length - 1 ? "success" : "secondary"
                   }
                 >
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  {activeStep === steps.length - 1 ? "beenden" : "weiter"}
                 </Button>
               </Box>
             </>

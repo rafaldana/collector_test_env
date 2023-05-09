@@ -72,16 +72,11 @@ const Register = () => (
       >
         <Box p={4}>
           <AuthRegister
-            title="Welcome to Collector"
-            subtext={
-              <Typography variant="subtitle1" color="textSecondary" mb={1}>
-                Your Admin Dashboard
-              </Typography>
-            }
+            title="Willkommen m Sammler"
             subtitle={
               <Stack direction="row" spacing={1} mt={3}>
                 <Typography color="textSecondary" variant="h6" fontWeight="400">
-                  Already have an Account?
+                  Sie haben bereits ein Konto?
                 </Typography>
                 <Typography
                   component={Link}
@@ -92,7 +87,7 @@ const Register = () => (
                     color: "primary.main",
                   }}
                 >
-                  Sign In
+                  Anmelden
                 </Typography>
               </Stack>
             }

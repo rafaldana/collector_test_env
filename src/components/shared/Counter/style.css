@@ -34,3 +34,13 @@
   opacity: 0;
   transform: translateY(100%);
 }
+
+.ap {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding-top: 40px;
+}
+.time-wrapper {
+  font-size: 18px;
+}

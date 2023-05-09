@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { useFormik } from 'formik';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import * as yup from 'yup';
 
@@ -36,8 +37,22 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
     event.preventDefault();
   };
 
+  const router = useRouter();
   const onRegisterFormSubmit = async (values) => {
     console.log(values);
+    const { email, name, password } = values;
+    try {
+      const { data } = await axios.post("/api/auth/register", {
+        name,
+        email,
+        password,
+      });
+
+      console.log(data);
+      router.push("/auth/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const formik = useFormik({
@@ -59,7 +74,7 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
       ) : null}
 
       {subtext}
-      <AuthSocialButtons title="Sign up with" />
+      <AuthSocialButtons title="Anmelden mit" />
       <form onSubmit={formik.handleSubmit}>
         <Box mt={3}>
           <Divider>
@@ -126,8 +141,7 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
             variant="contained"
             size="large"
             fullWidth
-            component={Link}
-            href="/auth/login"
+            type="submit"
           >
             Anmelden
           </Button>

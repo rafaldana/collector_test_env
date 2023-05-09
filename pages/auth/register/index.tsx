@@ -73,7 +73,7 @@ const Register = () => {
         >
           <Box p={4}>
             <AuthRegister
-              title="Welcome to Collector"
+              title="Willkommen bei Sammler"
               subtitle={
                 <Stack direction="row" spacing={1} mt={3}>
                   <Typography

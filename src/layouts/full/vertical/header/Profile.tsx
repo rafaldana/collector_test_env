@@ -101,7 +101,7 @@ const Profile = () => {
                     {session.user?.name ? session.user?.name : ""}
                   </Typography>
                   <Typography variant="subtitle2" color="textSecondary">
-                    Collector
+                    Sammler
                   </Typography>
                   <Typography
                     variant="subtitle2"

@@ -72,11 +72,11 @@ const Login = () => (
       >
         <Box p={4}>
           <AuthLogin
-            title="Welcome to Collector"
+            title="Willkommen bei Sammler"
             subtitle={
               <Stack direction="row" spacing={1} mt={3}>
                 <Typography color="textSecondary" variant="h6" fontWeight="500">
-                  You are new here?
+                  Du bist neu hier?
                 </Typography>
                 <Typography
                   component={Link}
@@ -87,7 +87,7 @@ const Login = () => (
                     color: "primary.main",
                   }}
                 >
-                  Create an account
+                  Ein Konto erstellen
                 </Typography>
               </Stack>
             }

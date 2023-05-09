@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
     if (!req.body)
       return res.status(404).json({ error: "Don't have form data...!" });
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
 
     // check duplicate users
     const checkExisting = await User.findOne({ email });
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       return res.status(422).json({ message: "User Already Exists...!" });
     }
 
-    const user = await User.create({ name: username, email, password });
+    const user = await User.create({ name, email, password });
     res.status(201).json({ user });
   }
 }

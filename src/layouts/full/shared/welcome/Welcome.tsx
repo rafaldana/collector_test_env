@@ -38,7 +38,7 @@ const Welcome = () => {
           variant="filled"
           sx={{ width: "100%", color: "white" }}
         >
-          <AlertTitle>Welcome to collector App</AlertTitle>
+          <AlertTitle></AlertTitle>
         </Alert>
       </Snackbar>
     </React.Fragment>

@@ -52,7 +52,7 @@ const MyApp = (props: MyAppProps) => {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <title>Art Collector App</title>
+        <title> Sammler App</title>
       </Head>
       <SessionProvider session={pageProps.session}>
         <ThemeProvider theme={theme}>
