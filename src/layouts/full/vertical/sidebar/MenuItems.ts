@@ -19,7 +19,7 @@ interface MenuitemsType {
 const Menuitems: MenuitemsType[] = [
   {
     navlabel: true,
-    subheader: "Home",
+    subheader: "Navi",
   },
   {
     id: uniqueId(),
@@ -29,7 +29,7 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: "My Collection",
+    title: "Meine Sammlung",
     icon: IconPictureInPicture,
     href: "/collection",
   },

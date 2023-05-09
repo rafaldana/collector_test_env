@@ -16,12 +16,12 @@ import AuthSocialButtons from './AuthSocialButtons';
 const loginValidationSchema = yup.object({
   username: yup
     .string()
-    .min(2, "Username should be of minimum 2 characters length")
-    .required("Name is required"),
+    .min(2, "Der Benutzername sollte mindestens 2 Zeichen lang sein")
+    .required("Benutzername wird benötigt"),
   password: yup
     .string()
-    .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
+    .min(8, "Das Passwort sollte mindestens 8 Zeichen lang sein")
+    .required("Passwort wird benötigt"),
 });
 
 const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
@@ -55,7 +55,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
 
       {subtext}
 
-      <AuthSocialButtons title="Sign in with" />
+      <AuthSocialButtons title="" />
 
       <form onSubmit={formik.handleSubmit}>
         <Box mt={3}>
@@ -68,14 +68,14 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
               position="relative"
               px={2}
             >
-              or sign in with
+              Oder melde dich an mit
             </Typography>
           </Divider>
         </Box>
 
         <Stack>
           <Box>
-            <CustomFormLabel htmlFor="username">Username</CustomFormLabel>
+            <CustomFormLabel htmlFor="username">Benutzername</CustomFormLabel>
             <CustomTextField
               id="username"
               variant="outlined"
@@ -86,7 +86,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
             />
           </Box>
           <Box>
-            <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
+            <CustomFormLabel htmlFor="password">Passwort</CustomFormLabel>
             <CustomTextField
               id="password"
               type="password"
@@ -120,7 +120,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
             <FormGroup>
               <FormControlLabel
                 control={<CustomCheckbox defaultChecked />}
-                label="Remeber this Device"
+                label="Merke dieses Gerät"
               />
             </FormGroup>
           </Stack>
@@ -133,7 +133,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
             fullWidth
             type="submit"
           >
-            Sign In
+            Anmelden
           </Button>
         </Box>
       </form>

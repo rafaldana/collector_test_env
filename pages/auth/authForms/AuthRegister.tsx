@@ -15,16 +15,16 @@ import AuthSocialButtons from './AuthSocialButtons';
 const registerValidationSchema = yup.object({
   name: yup
     .string()
-    .min(2, "Name should be of minimum 2 characters length")
-    .required("Name is required"),
+    .min(2, "Der Name sollte mindestens 2 Zeichen lang sein")
+    .required("Name ist erforderlich"),
   email: yup
     .string()
-    .email("Enter a valid email")
-    .required("Email is required"),
+    .email("Geben Sie eine gültige E-Mail-Adresse ein")
+    .required("E-Mail ist erforderlich"),
   password: yup
     .string()
-    .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
+    .min(8, "Das Passwort sollte mindestens 8 Zeichen lang sein")
+    .required("Passwort wird benötigt"),
 });
 
 const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
@@ -71,14 +71,14 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
               position="relative"
               px={2}
             >
-              or sign up with
+              Oder melde dich an mit
             </Typography>
           </Divider>
         </Box>
 
         <Box>
           <Stack mb={3}>
-            <CustomFormLabel htmlFor="name">Name</CustomFormLabel>
+            <CustomFormLabel htmlFor="name">Benutzername</CustomFormLabel>
             <CustomTextField
               id="name"
               variant="outlined"
@@ -96,7 +96,7 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
             />
-            <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
+            <CustomFormLabel htmlFor="password">Passwort</CustomFormLabel>
             <CustomTextField
               id="password"
               variant="outlined"
@@ -129,7 +129,7 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
             component={Link}
             href="/auth/login"
           >
-            Sign Up
+            Anmelden
           </Button>
         </Box>
       </form>

@@ -7,7 +7,7 @@ import { Alert, Box, Button, Step, StepLabel, Stepper, Typography } from '@mui/m
 import { Stack } from '@mui/system';
 import Vimeo from '@u-wave/react-vimeo';
 
-const steps = ["Start", "Video1", "Video2", "video3"];
+const steps = ["Willkommen", "", "", ""];
 
 const ProfileWizard = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -55,8 +55,18 @@ const ProfileWizard = () => {
       case 0:
         return (
           <Box mt={12} mb={12}>
-            <Typography variant="h2" align="center">
-              Cool Welcome text
+            <Typography variant="h4" fontWeight="700">
+              Willkommen bei NAWA QUEST!
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary" mt={2} mb={1}>
+              Deine Aufgabe ist es, die großartigste Sammlung von Kunstwerken zu
+              erstellen.
+            </Typography>
+            <Typography variant="subtitle1" fontWeight="700" mb={1}>
+              Zeit, mit dem Aufbau Ihrer Sammlung zu beginnen!
+            </Typography>
+            <Typography variant="subtitle1" fontWeight="700" mb={1}>
+              Zum Start anklicken!
             </Typography>
           </Box>
         );
@@ -114,7 +124,7 @@ const ProfileWizard = () => {
               <Stack spacing={14} mt={12} mb={5}>
                 <Alert severity="success">
                   <Typography variant="h5" align="center">
-                    All steps completed - you&apos;re finished
+                    Alle Schritte abgeschlossen - Sie sind fertig
                   </Typography>
                 </Alert>
 
@@ -124,7 +134,7 @@ const ProfileWizard = () => {
                     variant="contained"
                     color="error"
                   >
-                    Go to next Step
+                    weiter
                   </Button>
                 </Box>
               </Stack>
@@ -141,7 +151,7 @@ const ProfileWizard = () => {
                   onClick={handleBack}
                   sx={{ mr: 1 }}
                 >
-                  Back
+                  zurück
                 </Button>
                 <Box flex="1 1 auto" />
                 <Button

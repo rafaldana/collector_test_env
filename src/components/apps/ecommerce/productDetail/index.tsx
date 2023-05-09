@@ -40,10 +40,10 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
       currentPrice: 0,
       nextPrice: 0,
       offers: [
-        { name: "You", price: 0 },
-        { name: "Gallery", price: 0 },
+        { name: "Ihr Angebot", price: 0 },
+        { name: "Zimmer", price: 0 },
         { name: "Internet", price: 0 },
-        { name: "Phone", price: 0 },
+        { name: "Telefon", price: 0 },
       ],
     },
     reducers: {
@@ -66,7 +66,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
         state.nextPrice = state.currentPrice + stepPrice;
       },
       increaseByBot: (state) => {
-        const botName = ["Gallery", "Internet", "Phone"];
+        const botName = ["Zimmer", "Internet", "Telefon"];
         const name = botName[Math.floor(Math.random() * botName.length)];
 
         state.currentPrice = state.nextPrice;
@@ -83,7 +83,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
       increaseByUser: (state, action: { payload: number }) => {
         state.currentPrice = action.payload;
         state.offers = state.offers.map((offer) => {
-          if (offer.name === "You") {
+          if (offer.name === "Ihr Angebot") {
             return {
               ...offer,
               price: action.payload,
@@ -128,7 +128,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
   const handleSumUp = () => {
     // pobrać hajs
     // sprawdzić czy tutaj wyświetla się napis, jak to to wyświetlić
-    // wysłać żadanie d bazy z infomacjami o aukcji.
+    // wysłać żadanie do bazy z infomacjami o aukcji.
     // jeżeli to inna niż 40 aukcja przekierować na następną
 
     if (product) {
@@ -203,7 +203,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
             </Stack>
             <Stack direction="row" mt={2} gap={2} alignItems={"center"}>
               <Typography mt={2} variant="body1" fontWeight={600}>
-                Start Price:
+                Angebotspreis:
               </Typography>
               <Typography mt={2} variant="h5" fontWeight={600}>
                 {new Intl.NumberFormat().format(product.priceStart)}
@@ -215,7 +215,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
             <Stack direction="row" gap={2} alignItems="center">
               <Box>
                 <Typography my={3} variant="h6" fontWeight={600}>
-                  Current Price:
+                  Derzeitiger Preis:
                 </Typography>
               </Box>
               <Box>
@@ -263,7 +263,8 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
                 onClick={() => handleUserBind()}
                 sx={{ p: 2, borderRadius: "50px" }}
               >
-                Bind: {new Intl.NumberFormat().format(state.nextPrice)}
+                Biete {new Intl.NumberFormat().format(state.nextPrice)}{" "}
+                Nawa-Marken an
               </Button>
             </Grid>
           </Grid>

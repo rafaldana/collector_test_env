@@ -92,7 +92,7 @@ const Register = () => {
                       color: "primary.main",
                     }}
                   >
-                    Sign In
+                    Anmelden
                   </Typography>
                 </Stack>
               }
