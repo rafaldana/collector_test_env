@@ -15,6 +15,7 @@ const GalleryCard = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
   const openDetailsModal = (index: number) => {
     setCurrentProduct(gallery[index - 1]);
@@ -117,7 +118,9 @@ const GalleryCard = () => {
               size="large"
               fullWidth
               variant="contained"
-              onClick={handleStart}
+              onClick={() => {
+                setIsModalOpen2(true);
+              }}
               sx={{ p: 2, borderRadius: "50px" }}
             >
               Bieten beginnen
@@ -126,6 +129,12 @@ const GalleryCard = () => {
         </Stack>
       </Grid>
       {isModalOpen && (
+        <ResponsiveDialog
+          product={currentProduct}
+          handlerClose={closeDetailsModal}
+        />
+      )}
+      {isModalOpen2 && (
         <ResponsiveDialog
           product={currentProduct}
           handlerClose={closeDetailsModal}
