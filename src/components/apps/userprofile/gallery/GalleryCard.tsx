@@ -5,8 +5,7 @@ import React, { useEffect, useState } from 'react';
 import BlankCard from '@components/shared/BlankCard';
 import ResponsiveDialog from '@components/ui-components/dialog/ResponsiveDialog';
 import {
-    Box, Button, CardMedia, Chip, Grid, IconButton, InputAdornment, Skeleton, Stack, TextField,
-    Typography
+    Box, Button, CardMedia, Chip, Grid, IconButton, Skeleton, Stack, TextField, Typography
 } from '@mui/material';
 import { fetchGallery } from '@store/gallery/GallerySlice';
 import { useDispatch, useSelector } from '@store/Store';
@@ -121,7 +120,7 @@ const GalleryCard = () => {
               onClick={handleStart}
               sx={{ p: 2, borderRadius: "50px" }}
             >
-              Start adventure
+              Bieten beginnen
             </Button>
           </Grid>
         </Stack>

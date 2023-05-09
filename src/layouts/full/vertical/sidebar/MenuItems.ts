@@ -29,7 +29,7 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: "Meine Sammlung",
+    title: "Pre-auction exhibition",
     icon: IconPictureInPicture,
     href: "/collection",
   },

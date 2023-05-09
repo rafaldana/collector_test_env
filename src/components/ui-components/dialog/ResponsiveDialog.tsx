@@ -33,42 +33,44 @@ const ResponsiveDialog: FC<ResponsiveDialogProps> = ({
 
   const stats = [
     {
-      title: "Author",
+      title: "LOT",
+      value: product.id,
+      icon: <IconHome2 width={20} />,
+    },
+    {
+      title: "Titel",
+      value: product.title,
+      icon: <IconHome2 width={20} />,
+    },
+    {
+      title: "Autor",
       value: product.autor,
       icon: <IconUser width={20} />,
     },
     {
-      title: "Size",
+      title: "Maße",
       value: product.size,
       icon: <IconRulerMeasure width={20} />,
     },
     {
-      title: "Estimate price form",
-      value: product.estimateFrom,
+      title: "Einschätzung",
+      value: `von  ${new Intl.NumberFormat().format(
+        product.estimateFrom
+      )}  bis  ${new Intl.NumberFormat().format(product.estimateTo)}`,
       icon: <IconCurrencyDollar width={20} />,
     },
     {
-      title: "Estimate price to",
-      value: product.estimateTo,
-      icon: <IconCurrencyDollar width={20} />,
-    },
-    {
-      title: "Price start",
-      value: product.priceStart,
-      icon: <IconBellDollar width={20} />,
-    },
-    {
-      title: "Media",
-      value: product.priceStart,
+      title: "Technik",
+      value: product.media,
       icon: <IconFrame width={20} />,
     },
     {
-      title: "Year",
-      value: product.media,
+      title: "Jahr",
+      value: product.year,
       icon: <IconCalendarTime width={20} />,
     },
     {
-      title: "owner",
+      title: "Provenienz",
       value: product.owner,
       icon: <IconHome2 width={20} />,
     },
@@ -105,7 +107,7 @@ const ResponsiveDialog: FC<ResponsiveDialogProps> = ({
                     alignSelf={"stretch"}
                     justifySelf={"center"}
                   >
-                    <DashboardCard title={product.title} isFullHeight>
+                    <DashboardCard isFullHeight>
                       <>
                         <Stack spacing={3} mt={5} sx={{ minHeight: "100%" }}>
                           {stats.map((stat, i) => (
@@ -121,19 +123,8 @@ const ResponsiveDialog: FC<ResponsiveDialogProps> = ({
                                 alignItems="center"
                                 spacing={2}
                               >
-                                <Avatar
-                                  variant="rounded"
-                                  sx={{
-                                    bgcolor: primarylight,
-                                    color: primary,
-                                    width: 40,
-                                    height: 40,
-                                  }}
-                                >
-                                  {stat.icon}
-                                </Avatar>
                                 <Box>
-                                  <Typography variant="h6" mb="4px">
+                                  <Typography variant="body1" mb="4px">
                                     {stat.title}
                                   </Typography>
                                 </Box>
@@ -143,6 +134,7 @@ const ResponsiveDialog: FC<ResponsiveDialogProps> = ({
                                 <Typography
                                   variant="subtitle2"
                                   color="textSecondary"
+                                  fontWeight={"bold"}
                                 >
                                   {stat.value}
                                 </Typography>

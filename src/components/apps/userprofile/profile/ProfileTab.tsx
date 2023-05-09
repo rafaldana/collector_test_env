@@ -19,7 +19,7 @@ const ProfileTab = () => {
       hide: false,
     },
     {
-      label: "Meine Sammlung",
+      label: "Pre-auction exhibition",
       icon: <IconPhoto size="20" />,
       to: "/collection",
       hide: false,

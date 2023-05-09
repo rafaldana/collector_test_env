@@ -101,7 +101,7 @@ const ProfileWizard = () => {
       case 3:
         return (
           <Box mt={5}>
-            <Vimeo className="video" video="824573151" />
+            <Vimeo className="video" video="825064900" />
           </Box>
         );
       default:
