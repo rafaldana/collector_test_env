@@ -1,31 +1,22 @@
 import { Grid } from '@mui/material';
-import Breadcrumb from '../../../src/layouts/full/shared/breadcrumb/Breadcrumb';
+
 import PageContainer from '../../../src/components/container/PageContainer';
-import ParentCard from '../../../src/components/shared/ParentCard';
 import ChildCard from '../../../src/components/shared/ChildCard';
-import SimpleDialog from '../../../src/components/ui-components/dialog/SimpleDialog';
+import ParentCard from '../../../src/components/shared/ParentCard';
 import AlertDialog from '../../../src/components/ui-components/dialog/AlertDialog';
-import TransitionDialog from '../../../src/components/ui-components/dialog/TransitionDialog';
 import FormDialog from '../../../src/components/ui-components/dialog/FormDialog';
 import FullscreenDialog from '../../../src/components/ui-components/dialog/FullscreenDialog';
 import MaxWidthDialog from '../../../src/components/ui-components/dialog/MaxWidthDialog';
-import ScrollContentDialog from '../../../src/components/ui-components/dialog/ScrollContentDialog';
 import ResponsiveDialog from '../../../src/components/ui-components/dialog/ResponsiveDialog';
-
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Dialog',
-  },
-];
+import ScrollContentDialog from '../../../src/components/ui-components/dialog/ScrollContentDialog';
+import SimpleDialog from '../../../src/components/ui-components/dialog/SimpleDialog';
+import TransitionDialog from '../../../src/components/ui-components/dialog/TransitionDialog';
+import Breadcrumb from '../../../src/layouts/full/shared/breadcrumb/Breadcrumb';
 
 const MuiDialog = () => (
   <PageContainer>
     {/* breadcrumb */}
-    <Breadcrumb title="Dialog" items={BCrumb} />
+    <Breadcrumb title="Dialog" items={[]} />
     {/* end breadcrumb */}
 
     <ParentCard title="Dialog">
