@@ -1,3 +1,5 @@
+import { getSession } from 'next-auth/react';
+
 import GalleryCard from '@components/apps/userprofile/gallery/GalleryCard';
 import ProfileBanner from '@components/apps/userprofile/profile/ProfileBanner';
 import PageContainer from '@components/container/PageContainer';
@@ -19,3 +21,20 @@ const Gallery = () => {
 };
 
 export default Gallery;
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+}
