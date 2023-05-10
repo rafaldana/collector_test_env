@@ -52,7 +52,7 @@ const MuiDialog = () => (
           </ChildCard>
         </Grid>
         <Grid item xs={12} lg={4} sm={6} display="flex" alignItems="stretch">
-          <ChildCard title="Scrolling Content">
+          <ChildCard title="Scrolling Conten ">
             <ScrollContentDialog />
           </ChildCard>
         </Grid>
