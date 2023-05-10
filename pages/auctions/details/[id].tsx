@@ -59,7 +59,7 @@ const AuctionDetails = () => {
 
 export default AuctionDetails;
 
-export async function getStaticProps({ req }) {
+export async function getServerSideProps({ req }) {
   const session = await getSession({ req });
 
   if (!session) {

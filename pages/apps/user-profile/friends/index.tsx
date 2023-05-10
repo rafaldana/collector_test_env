@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
-import PageContainer from '../../../../src/components/container/PageContainer';
+
 import ProfileBanner from '../../../../src/components/apps/userprofile/profile/ProfileBanner';
-import FriendsCard from '../../../../src/components/apps/userprofile/friends/FriendsCard';
+import PageContainer from '../../../../src/components/container/PageContainer';
 
 const Friends = () => {
   return (
@@ -10,9 +10,7 @@ const Friends = () => {
         <Grid item sm={12}>
           <ProfileBanner />
         </Grid>
-        <Grid item sm={12}>
-          <FriendsCard />
-        </Grid>
+        <Grid item sm={12}></Grid>
       </Grid>
     </PageContainer>
   );

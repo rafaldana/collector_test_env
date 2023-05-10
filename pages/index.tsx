@@ -23,7 +23,7 @@ const Home = ({ session }) => {
 
 export default Home;
 
-export async function getStaticProps({ req }) {
+export async function getServerSideProps({ req }) {
   const session = await getSession({ req });
 
   if (!session) {
