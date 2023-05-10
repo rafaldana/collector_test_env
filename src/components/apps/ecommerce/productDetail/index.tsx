@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useLocalSlice } from 'use-local-slice';
 
 import BlankCard from '@components/shared/BlankCard';
@@ -50,7 +50,7 @@ const randRange = (data) => {
 
 const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
   const theme = useTheme();
-  let botTimer;
+  const botTimer = useRef(null);
   const dispatch = useDispatch();
   const [isOver, setIsOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -123,23 +123,23 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
   });
 
   const [cartalert, setCartalert] = React.useState(false);
-
+  console.log("isover", isOver);
   function botTrigger() {
     if (isOver) {
       return;
     }
-
-    // dispatchAction.calcNextPrice();
-    // dispatchAction.increaseByBot();
+    console.log("Boot Trigger");
+    dispatchAction.calcNextPrice();
+    dispatchAction.increaseByBot();
   }
 
   function botPriceUp() {
     const timeArray = new Array(2000, 3000, 5000);
+    clearTimeout(botTimer.current);
     if (!isOver) {
-      console.log("NOt OVER");
       botTrigger();
-      clearInterval(botTimer);
-      botTimer = setInterval(botPriceUp, randRange(timeArray));
+      console.log("after clear", botTimer.current);
+      botTimer.current = setTimeout(botPriceUp, randRange(timeArray));
     }
   }
 
@@ -168,6 +168,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
   };
 
   const handleTextModalComplete = () => {
+    setIsOver(true);
     setShowModal(false);
     redirect();
   };
@@ -178,7 +179,10 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
     // wysłać żadanie do bazy z infomacjami o aukcji.
     // jeżeli to inna niż 40 aukcja przekierować na następną
 
+    setIsOver(true);
     console.log("sumUp over", isOver);
+
+    // clearTimeout(botTimer.current);
 
     if (Number(product.id) % 2 === 0) {
       console.log(infoData[productId]);
@@ -189,11 +193,12 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
   };
 
   useEffect(() => {
-    botTimer = setInterval(botPriceUp, 1000);
+    console.log("effect");
+    botTimer.current = setTimeout(botPriceUp, 1000);
     return () => {
-      clearInterval(botTimer);
+      clearTimeout(botTimer.current);
     };
-  }, []);
+  }, [productId]);
 
   useEffect(() => {
     dispatchAction.updateCurrentPrice(product.priceStart);

@@ -44,11 +44,6 @@ const ResponsiveDialog2: FC<ResponsiveDialogProps> = ({
               <Typography>
                 Um teilzunehmen, melde dich in der MS Teams NAWA Gruppe an.
               </Typography>
-              <Typography>
-                <a href="https://teams.microsoft.com/l/meetup-join/19%3aPSpu_4YMv-e1CmQiLADyC_XkGc8cQT1PJmBopFQlJtc1%40thread.tacv2/1683565770865?context=%7b%22Tid%22%3a%2273689ee1-b42f-4e25-a5f6-66d1f29bc092%22%2c%22Oid%22%3a%229a01108c-409b-4a46-9724-fc515c684504%22%7d">
-                  MS Teams
-                </a>
-              </Typography>
             </Grid>
           </>
         </Box>

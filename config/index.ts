@@ -4,7 +4,7 @@ const config = {
   nextPriceBind: 5000,
   higherNextPriceBind: 10000,
   higherBindLimit: 100000,
-  auctionTime: 20, //seconds
+  auctionTime: 10, //seconds
   ends: 1683650700, // time stamp
 } as const;
 
