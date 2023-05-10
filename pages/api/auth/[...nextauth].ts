@@ -12,7 +12,6 @@ import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 export const authOptions = {
   // Configure one or more authentication providers
   debug: process.env.NODE_ENV === "development",
-  adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -24,21 +23,19 @@ export const authOptions = {
     }),
     CredentialsProvider({
       name: "Credentials",
-      credentials: {
-        email: {
-          label: "email",
-          type: "text",
-          placeholder: "email@email.com",
-        },
-        password: { label: "Password", type: "password" },
-      },
+      credentials: {},
       //@ts-ignore
       async authorize(credentials, req) {
-        dbConnect();
+        console.log("cred: ", credentials);
+        console.log("req: ", req);
+        await dbConnect();
+        //@ts-ignore
         const { email, password } = credentials;
         const user = await User.findOne({ email });
+        console.log("user", user);
         if (!user) {
           throw new Error("Invalid Email or Password");
+          return null;
         }
         const isPasswordMatched = await bcrypt.compare(password, user.password);
         if (!isPasswordMatched) {

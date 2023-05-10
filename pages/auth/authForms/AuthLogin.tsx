@@ -16,10 +16,7 @@ import { loginType } from '../../../src/types/auth/auth';
 import AuthSocialButtons from './AuthSocialButtons';
 
 const loginValidationSchema = yup.object({
-  email: yup
-    .string()
-    .email("Geben Sie eine gültige E-Mail-Adresse ein")
-    .required("E-Mail ist erforderlich"),
+  email: yup.string().required("E-Mail ist erforderlich"),
   password: yup
     .string()
     .min(8, "Das Passwort sollte mindestens 8 Zeichen lang sein")
@@ -38,12 +35,15 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
   const router = useRouter();
 
   const onLoginFormSubmit = async (values) => {
+    console.log("submit: ", values);
     const status = await signIn("credentials", {
       redirect: false,
       email: values.email,
       password: values.password,
       callbackUrl: "/",
     });
+
+    console.log("STATUS: ", status);
 
     if (status.ok) {
       router.push(status.url);
@@ -99,7 +99,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
             <CustomFormLabel htmlFor="password">Passwort</CustomFormLabel>
             <CustomTextField
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               variant="outlined"
               fullWidth
               {...formik.getFieldProps("password")}

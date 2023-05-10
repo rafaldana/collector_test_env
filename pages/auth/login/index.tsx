@@ -1,3 +1,5 @@
+import { getToken } from 'next-auth/jwt';
+import { getProviders, getSession, signIn } from 'next-auth/react';
 import Link from 'next/link';
 
 import PageContainer from '@components/container/PageContainer';
@@ -100,3 +102,22 @@ const Login = () => (
 
 Login.layout = "Blank";
 export default Login;
+
+export async function getServerSideProps(context) {
+  const { query, req, res } = context;
+  var error = "";
+  if (Boolean(query.error)) {
+    error = query.error;
+  }
+
+  try {
+    const secret = process.env.NEXTAUTH_SECRET;
+    const token = await getToken({ req, secret });
+
+    console.log("token!!: ", token);
+
+    return { props: { providers: await getProviders(), loginError: error } };
+  } catch (e) {
+    return { props: { providers: await getProviders(), loginError: error } };
+  }
+}
