@@ -1,3 +1,4 @@
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useLocalSlice } from 'use-local-slice';
@@ -48,8 +49,22 @@ const randRange = (data) => {
   return newTime;
 };
 
+const localInitState = {
+  productId: 0,
+  user: "",
+  currentPrice: 0,
+  nextPrice: 0,
+  offers: [
+    { name: "Ihr Angebot", price: 0 },
+    { name: "Zimmer", price: 0 },
+    { name: "Internet", price: 0 },
+    { name: "Telefon", price: 0 },
+  ],
+};
+
 const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
   const theme = useTheme();
+  const { data: session } = useSession();
   const botTimer = useRef(null);
   const dispatch = useDispatch();
   const [isOver, setIsOver] = useState(false);
@@ -63,17 +78,14 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
 
   const [state, dispatchAction] = useLocalSlice({
     slice: "auctions", // optional - will be displayed in the debug tools
-    initialState: {
-      currentPrice: 0,
-      nextPrice: 0,
-      offers: [
-        { name: "Ihr Angebot", price: 0 },
-        { name: "Zimmer", price: 0 },
-        { name: "Internet", price: 0 },
-        { name: "Telefon", price: 0 },
-      ],
-    },
+    initialState: localInitState,
     reducers: {
+      updateProductId: (state, action: { payload: number }) => {
+        state.productId = action.payload;
+      },
+      updateUserMail: (state, action: { payload: string }) => {
+        state.user = action.payload;
+      },
       updateCurrentPrice: (state, action: { payload: number }) => {
         state.currentPrice = action.payload;
       },
@@ -119,16 +131,20 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
           return offer;
         });
       },
+      resetState: (state) => {
+        state = localInitState;
+      },
     },
   });
 
   const [cartalert, setCartalert] = React.useState(false);
-  console.log("isover", isOver);
+  console.log("TOP isover: ", isOver);
+
   function botTrigger() {
     if (isOver) {
       return;
     }
-    console.log("Boot Trigger");
+    console.log("!!! Boot Trigger !!!");
     dispatchAction.calcNextPrice();
     dispatchAction.increaseByBot();
   }
@@ -169,6 +185,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
 
   const handleTextModalComplete = () => {
     setIsOver(true);
+    console.log("handleTextModalComplete: ", isOver);
     setShowModal(false);
     redirect();
   };
@@ -180,7 +197,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
     // jeżeli to inna niż 40 aukcja przekierować na następną
 
     setIsOver(true);
-    console.log("sumUp over", isOver);
+    console.log("handleSumUp: ", isOver);
 
     // clearTimeout(botTimer.current);
 
@@ -194,6 +211,11 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
 
   useEffect(() => {
     console.log("effect");
+    setIsOver(false);
+
+    console.log("effect: ", isOver);
+    console.log("state: ", state);
+
     botTimer.current = setTimeout(botPriceUp, 1000);
     return () => {
       clearTimeout(botTimer.current);
@@ -253,16 +275,14 @@ const ProductDetail: FC<ProductDetailProps> = ({ productId }) => {
                   {product.autor}
                 </Typography>
               </Box>
-              {!isOver && (
-                <Counter
-                  size={100}
-                  duration={config.auctionTime}
-                  handlerOnComplete={() => {
-                    handleSumUp();
-                    return { shouldRepeat: true };
-                  }}
-                />
-              )}
+              <Counter
+                size={100}
+                duration={config.auctionTime}
+                handlerOnComplete={() => {
+                  handleSumUp();
+                  return { shouldRepeat: false };
+                }}
+              />
             </Stack>
             <Stack direction="row" mt={2} gap={2} alignItems={"center"}>
               <Typography mt={2} variant="body1" fontWeight={600}>

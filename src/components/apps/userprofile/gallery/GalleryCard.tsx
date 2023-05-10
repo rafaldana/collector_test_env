@@ -118,9 +118,7 @@ const GalleryCard = () => {
               size="large"
               fullWidth
               variant="contained"
-              onClick={() => {
-                setIsModalOpen2(true);
-              }}
+              onClick={handleStart}
               sx={{ p: 2, borderRadius: "50px" }}
             >
               Bieten beginnen
