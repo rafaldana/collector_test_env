@@ -32,7 +32,7 @@ const { getGallery, hasError } = GallerySlice.actions;
 
 export const fetchGallery = () => async (dispatch: AppDispatch) => {
   try {
-    const response = await axios.get("/api/gallery");
+    const response = await axios.get(`${process.env.BASE_URI}/api/gallery`);
     dispatch(getGallery(response.data.gallery));
   } catch (error) {
     dispatch(hasError(error));
